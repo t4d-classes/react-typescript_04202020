@@ -4,7 +4,7 @@
 
 ## Steps
 
-1. Below the header in Car Tool, add a table of cars (and HTML table and related table elements). The table of cars should be in the Car Tool component. The table should have a header row with the following column headers:
+1. Below the header in Car Tool, add a table of cars (please use an HTML table and the related table elements). The table of cars should be in the Car Tool component. The table should have a header row with the following column headers:
 
 Id, Make, Model, Year, Color, Price
 
