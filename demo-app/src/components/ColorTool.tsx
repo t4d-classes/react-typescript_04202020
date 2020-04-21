@@ -6,19 +6,22 @@ export interface ColorToolProps {
   colors: Color[];
 }
 
-interface ColorToolState {
+interface ColorFormState {
   name: string;
   hexcode: string;
-  [ x: string ]: any;
 }
+
+type ColorsState = Color[];
 
 export const ColorTool: FC<ColorToolProps> = (props) => {
 
   // colorForm represents the data collected on the form
   // setColorForm is the function which update the form data and re-renders the component
-  const [ colorForm, setColorForm ] = useState({ name: '', hexcode: '' } as ColorToolState);
+  const [ colorForm, setColorForm ] = useState<ColorFormState>({ name: '', hexcode: '' });
 
-  const colorListItems = props.colors.map( (color) =>
+  const [ colors, setColors ] = useState<ColorsState>(props.colors.concat());
+
+  const colorListItems = colors.map( (color) =>
     <li key={color.id}>{color.name}</li>);
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +33,19 @@ export const ColorTool: FC<ColorToolProps> = (props) => {
 
   };
 
-  console.log('re-rendering', colorForm);
+  const addColor = () => {
+
+    setColors(colors.concat({
+      name: colorForm.name,
+      id: Math.max(...colors.map(c => c.id) as [], 0) + 1,
+    }));
+
+    setColorForm({
+      name: '',
+      hexcode: '',
+    });
+
+  }
 
   return (
     <>
@@ -50,6 +65,7 @@ export const ColorTool: FC<ColorToolProps> = (props) => {
           <label htmlFor="hexcode-input">New Hexcode</label>
           <input type="text" id="hexcode-input" name="hexcode" value={colorForm.hexcode} onChange={change} />
         </div>
+        <button type="button" onClick={addColor}>Add Color</button>
       </form>
     </>
   );
