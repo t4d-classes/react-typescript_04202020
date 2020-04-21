@@ -15,14 +15,8 @@ type ColorsState = Color[];
 
 export const ColorTool: FC<ColorToolProps> = (props) => {
 
-  // colorForm represents the data collected on the form
-  // setColorForm is the function which update the form data and re-renders the component
   const [ colorForm, setColorForm ] = useState<ColorFormState>({ name: '', hexcode: '' });
-
   const [ colors, setColors ] = useState<ColorsState>(props.colors.concat());
-
-  const colorListItems = colors.map( (color) =>
-    <li key={color.id}>{color.name}</li>);
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
 
@@ -53,11 +47,11 @@ export const ColorTool: FC<ColorToolProps> = (props) => {
         <h1>Color Tool</h1>
       </header>
       <ul>
-        {colorListItems}
+        {colors.map(color =>
+          <li key={color.id}>{color.name}</li>)}
       </ul>
       <form>
         <div>
-          {/* React.createElement('label', { htmlFor: 'name-input' }, 'New Color') */}
           <label htmlFor="name-input">New Color</label>
           <input type="text" id="name-input" name="name" value={colorForm.name} onChange={change} />
         </div>
