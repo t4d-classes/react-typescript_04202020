@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Color } from '../models/Color';
 
-export const ColorTool = () => {
+export interface ColorToolProps {
+  colors: Color[];
+}
 
-  const colors: Color[] = [
-    { id: 1, name: 'black' },
-    { id: 2, name: 'blue' },
-    { id: 3, name: 'green' },
-    { id: 4, name: 'yellow' },
-    { id: 5, name: 'silver' },
-    { id: 6, name: 'pink' },
-  ];
+export const ColorTool: FC<ColorToolProps> = (props) => {
 
-  const colorListItems = colors.map( (color) =>
+  const colorListItems = props.colors.map( (color) =>
     <li key={color.id}>{color.name}</li>);
 
   return (

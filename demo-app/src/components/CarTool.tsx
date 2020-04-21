@@ -2,6 +2,52 @@ import React from 'react';
 
 import { Car } from '../models/Car';
 
+// function declaration
+// function CarRow(car) {
+//   return <tr key={car.id}>
+//     <td>{car.id}</td>
+//     <td>{car.make}</td>
+//     <td>{car.model}</td>
+//     <td>{car.year}</td>
+//     <td>{car.color}</td>
+//     <td>{car.price}</td>
+//   </tr>;
+// }
+
+// // function expression
+// const CarRow = function(car) {
+//   return <tr key={car.id}>
+//     <td>{car.id}</td>
+//     <td>{car.make}</td>
+//     <td>{car.model}</td>
+//     <td>{car.year}</td>
+//     <td>{car.color}</td>
+//     <td>{car.price}</td>
+//   </tr>;
+// }
+
+// // arrow function
+// const CarRow = car => {
+//   return <tr key={car.id}>
+//     <td>{car.id}</td>
+//     <td>{car.make}</td>
+//     <td>{car.model}</td>
+//     <td>{car.year}</td>
+//     <td>{car.color}</td>
+//     <td>{car.price}</td>
+//   </tr>;
+// }
+
+// const CarRow = car => <tr key={car.id}>
+//   <td>{car.id}</td>
+//   <td>{car.make}</td>
+//   <td>{car.model}</td>
+//   <td>{car.year}</td>
+//   <td>{car.color}</td>
+//   <td>{car.price}</td>
+// </tr>;
+
+
 export const CarTool = () => {
 
   const cars: Car[] = [
@@ -26,14 +72,16 @@ export const CarTool = () => {
           </tr>
         </thead>
         <tbody>
-          {cars.map(car => <tr key={car.id}>
-            <td>{car.id}</td>
-            <td>{car.make}</td>
-            <td>{car.model}</td>
-            <td>{car.year}</td>
-            <td>{car.color}</td>
-            <td>{car.price}</td>
-          </tr>)}
+          {cars.map(function(car) {
+            return <tr key={car.id}>
+              <td>{car.id}</td>
+              <td>{car.make}</td>
+              <td>{car.model}</td>
+              <td>{car.year}</td>
+              <td>{car.color}</td>
+              <td>{car.price}</td>
+            </tr>;
+          })}
         </tbody>
       </table>
     </>
