@@ -6,6 +6,7 @@ import { CarViewRow } from './CarViewRow';
 
 export interface CarTableProps {
   cars: Car[];
+  onDeleteCar: (carId: number) => void;
 }
 
 export const CarTable: FC<CarTableProps> = (props) => {
@@ -20,10 +21,12 @@ export const CarTable: FC<CarTableProps> = (props) => {
           <th>Year</th>
           <th>Color</th>
           <th>Price</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {props.cars.map(car => <CarViewRow key={car.id} car={car} />)}
+        {props.cars.map(car => <CarViewRow key={car.id}
+          car={car} onDeleteCar={props.onDeleteCar} />)}
       </tbody>
     </table>
   );
