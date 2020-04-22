@@ -6,16 +6,16 @@ export interface CarViewRowProps {
   car: Car;
 }
 
-export const CarViewRow: FC<CarViewRowProps> = (props) => {
+export const CarViewRow: FC<CarViewRowProps> = ({ car }) => {
 
   return (
-    <tr key={props.car.id}>
-      <td>{props.car.id}</td>
-      <td>{props.car.make}</td>
-      <td>{props.car.model}</td>
-      <td>{props.car.year}</td>
-      <td>{props.car.color}</td>
-      <td>{props.car.price}</td>
+    <tr key={car.id}>
+      <td>{car.id}</td>
+      <td>{car.make}</td>
+      <td>{car.model}</td>
+      <td>{car.year}</td>
+      <td>{car.color}</td>
+      <td>{car.price}</td>
     </tr>
   );
 

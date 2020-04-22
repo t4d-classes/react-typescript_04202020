@@ -4,9 +4,9 @@ export interface ToolHeaderProps {
   headerText: string;
 }
 
-export const ToolHeader: FC<ToolHeaderProps> = (props) => {
+export const ToolHeader: FC<ToolHeaderProps> = ({ headerText }) => {
 
   return <header className="page-header">
-    <h1>{props.headerText}</h1>
+    <h1>{headerText}</h1>
   </header>;
 };
