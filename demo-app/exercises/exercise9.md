@@ -4,7 +4,8 @@
 
 ## Steps
 
-1. For each color in the color list, display a button with a label of an 'X'. When the 'X' button is clicked, remove the color from the list.
+1. For each color in the color list, display a button with a label of an 'X'. When the
+'X' button is clicked, remove the color from the list.
 
 Bonus:
 

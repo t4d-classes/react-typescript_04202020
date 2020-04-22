@@ -25,10 +25,14 @@ export const ColorTool: FC<ColorToolProps> = (props) => {
 
   };
 
+  const deleteColor = (colorId: number) => {
+    setColors(colors.filter(c => c.id !== colorId));
+  };
+
   return (
     <>
       <ToolHeader headerText="Color Tool" />
-      <ColorList colors={colors} />
+      <ColorList colors={colors} onDeleteColor={deleteColor} />
       <ColorForm buttonText="Add Color" onSubmitColor={addColor} />
     </>
   );
