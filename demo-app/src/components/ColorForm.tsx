@@ -21,7 +21,7 @@ export const ColorForm: FC<ColorFormProps> = (props) => {
   const submitColor = () => {
 
     // casting it as Color because it has the color properties
-    props.onSubmitColor({ ...colorForm } as Color);
+    props.onSubmitColor({ ...colorForm });
 
     resetColorForm();
 

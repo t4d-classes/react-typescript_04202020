@@ -74,5 +74,46 @@
       */
 
     </script>
+
+    <script>
+      /*
+
+      'use strict';
+
+      const myBind = function(fn, context) {
+
+        return function(...params) {
+          fn.apply(context, params);
+        };
+
+      }
+
+      const person = {
+        name: 'Bob',
+        getFullName: function() {
+          console.log(this);
+        },
+      };
+
+      const getFullName = myBind(person.getFullName, person);
+
+      getFullName();
+
+      /*
+      person.getFullName();
+
+      const person2 = {
+        name: 'Sally',
+        getFullName: person.getFullName,
+      };
+
+      person2.getFullName();
+
+      console.log(person.getFullName === person2.getFullName);
+      */
+
+      
+
+    </script>
   </body>
 </html>

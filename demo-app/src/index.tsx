@@ -16,10 +16,7 @@ const colorList: Color[] = [
   { id: 6, name: 'pink' },
 ];
 
-const carList: Car[] = [
-  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2019, color: 'red', price: 45000 },
-  { id: 2, make: 'Tesla', model: 'S', year: 2018, color: 'blue', price: 100000 },
-];
+const carList: Car[] = [];
 
 ReactDOM.render(
   <>
