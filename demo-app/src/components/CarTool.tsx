@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 
 import { Car } from '../models/Car';
-import { all, append } from '../services/cars';
+import { all, append, replace, remove} from '../services/cars';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
@@ -31,22 +31,23 @@ export const CarTool: FC<CarToolProps> = (props) => {
   };
 
   const deleteCar = (carId: number) => {
-    setCars(cars.filter(car => car.id !== carId));
-    setEditCarId(-1);
+    return remove(carId)
+      .then(() => refreshCars())
+      .then(() => {
+        setEditCarId(-1);
+      });
   };
 
   const replaceCar = (car: Car) => {
-    const carIndex = cars.findIndex(c => c.id === car.id);
-    const newCars = cars.concat();
-    newCars[carIndex] = car;
-    setCars(newCars);
-    setEditCarId(-1);
+    return replace(car)
+      .then(() => refreshCars())
+      .then(() => {
+        setEditCarId(-1);
+      });
   };
 
   useEffect(() => {
-
     refreshCars();
-
   }, [ refreshCars ]);
 
   return (
