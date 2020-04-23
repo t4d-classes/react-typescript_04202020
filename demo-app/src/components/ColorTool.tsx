@@ -6,25 +6,7 @@ import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
-const sortColors = (colors: Color[], sortDir: boolean) => {
-
-  const sortedColors = colors.concat();
-
-  sortedColors.sort( (a: Color, b: Color) => {
-
-    if (a.name < b.name) {
-      return sortDir ? -1 : 1;
-    } else if (a.name > b.name) {
-      return sortDir ? 1 : -1;
-    } else {
-      return 0;
-    }
-
-  } );
-
-  return sortedColors;
-
-};
+import { sortColors } from '../filters/sortedColors';
 
 export interface ColorToolProps {
   colors: Color[];
