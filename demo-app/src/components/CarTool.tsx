@@ -6,45 +6,24 @@ import { all, append, replace, remove} from '../services/cars';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
+import { useCarStore } from '../CarStore';
 
 export interface CarToolProps {
-  cars: Car[];
+  // cars: Car[];
+  // editCarId: number;
+  // onRefreshCars: () => Promise<Car[]>;
+  // onAppendCar: (car: Car) => Promise<Car>;
+  // onReplaceCar: (car: Car) => Promise<void>;
+  // onRemoveCar: (carId: number) => Promise<void>;
+  // onEditCar: (carId: number) => void;
+  // onCancelCar: () => void;
 }
 
-type CarsState = Car[];
+export const CarTool: FC<CarToolProps> = (ignoreProps) => {
 
-export const CarTool: FC<CarToolProps> = (props) => {
+  const props = useCarStore();
 
-  const [ cars, setCars ] = useState<CarsState>(props.cars.concat());
-  const [ editCarId, setEditCarId ] = useState<number>(-1);
-
-  const refreshCars = useCallback(() => {
-    return all().then(cars => setCars(cars));
-  }, []);
-
-  const addCar = (car: Car) => {
-    return append(car)
-      .then(() => refreshCars())
-      .then(() => {
-        setEditCarId(-1);
-      });
-  };
-
-  const deleteCar = (carId: number) => {
-    return remove(carId)
-      .then(() => refreshCars())
-      .then(() => {
-        setEditCarId(-1);
-      });
-  };
-
-  const replaceCar = (car: Car) => {
-    return replace(car)
-      .then(() => refreshCars())
-      .then(() => {
-        setEditCarId(-1);
-      });
-  };
+  const refreshCars = props.onRefreshCars;
 
   useEffect(() => {
     refreshCars();
@@ -53,10 +32,10 @@ export const CarTool: FC<CarToolProps> = (props) => {
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={cars} editCarId={editCarId}
-        onEditCar={setEditCarId} onDeleteCar={deleteCar}
-        onSaveCar={replaceCar} onCancelCar={() => setEditCarId(-1)} />
-      <CarForm buttonText="Add Car" onSubmitCar={addCar} />
+      <CarTable cars={props.cars} editCarId={props.editCarId}
+        onEditCar={props.onEditCar} onDeleteCar={props.onRemoveCar}
+        onSaveCar={props.onReplaceCar} onCancelCar={props.onCancelCar} />
+      <CarForm buttonText="Add Car" onSubmitCar={props.onAppendCar} />
     </>
   );
 

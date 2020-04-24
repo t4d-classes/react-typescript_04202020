@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Color } from './models/Color';
 import { Car } from './models/Car';
 
+import { CarStore, connectToCarStore } from './CarStore';
+
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
@@ -18,10 +20,14 @@ const colorList: Color[] = [
 
 const carList: Car[] = [];
 
+// const CarToolConnected = connectToCarStore(CarTool);
+
 ReactDOM.render(
   <>
     <ColorTool colors={colorList} />
-    <CarTool cars={carList} />
+    <CarStore>
+      <CarTool />
+    </CarStore>
   </>,
   document.querySelector('#root'),
 );
